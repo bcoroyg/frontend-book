@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { bookAPI } from "../api";
-import Book from "../components/Book";
+import { bookAPI } from "../../api";
+import Book from "../../components/Book";
 
 const Books = () => {
   //usf

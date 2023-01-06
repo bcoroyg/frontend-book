@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { bookAPI } from "../api";
+import { bookAPI } from "../../api";
 
 const BookDetail = () => {
   const params = useParams();

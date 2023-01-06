@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { searchAPI } from "../api";
-import Book from "../components/Book";
+import { searchAPI } from "../../api";
+import Book from "../../components/Book";
 
 const Search = () => {
   const params = useParams();

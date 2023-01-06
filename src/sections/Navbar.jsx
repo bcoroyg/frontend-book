@@ -65,6 +65,13 @@ const Navbar = () => {
               Buscar
             </button>
           </form>
+          <Link
+            to={"/login"}
+            class="btn btn-outline-primary ms-auto mt-2 mt-md-0"
+            role="button"
+          >
+            Iniciar Sesion
+          </Link>
         </div>
       </div>
     </nav>
