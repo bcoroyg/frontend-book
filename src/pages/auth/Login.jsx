@@ -1,26 +1,70 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { authAPI } from "../../api";
 
 const Login = () => {
+  //Navigate
+  const navigate = useNavigate();
+
+  //State con los datos del formulario
+  const [credentials, setCredentials] = useState({});
+
+  //Almacenar lo que el usuario escribe en el state
+  const handleChange = ({ target }) => {
+    setCredentials((state) => ({
+      ...state,
+      [target.name]: target.value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await authAPI.login(credentials);
+      //Extraer el token y colocarlo en localstorage
+      const { token } = response;
+      localStorage.setItem("token", token);
+      //Redireccionar
+      navigate("/dashboard");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="body">
-      <form action="" method="post">
-        <img className="logo" src={"./assets/login.png"} alt="" srcset="" />
+      <form onSubmit={handleSubmit}>
+        <img className="logo" src={"./assets/login.png"} alt={"logo login"} />
         <h3 className="mb-3">Login</h3>
         <div className="form-floating mb-3">
-          <input className="form-control" type="text" name="username" />
+          <input
+            className="form-control"
+            type="text"
+            name="username"
+            placeholder="Ingresar username."
+            required
+            onChange={handleChange}
+          />
           <label>Usuario</label>
         </div>
         <div className="form-floating mb-3">
-          <input className="form-control" type="password" name="password" />
+          <input
+            className="form-control"
+            type="password"
+            name="password"
+            placeholder="Ingresar contraseña."
+            required
+            onChange={handleChange}
+          />
           <label>Contraseña</label>
         </div>
-        <div class="d-grid">
+        <div className="d-grid">
           <button className="btn btn-primary btn-lg rounded-0">
             Iniciar sesión
           </button>
         </div>
-        <p class="mt-3 mb-0">
-          <Link class="text-decoration-none" to={"/"}>
+        <p className="mt-3 mb-0">
+          <Link className="text-decoration-none" to={"/"}>
             Ir a inicio
           </Link>
         </p>
