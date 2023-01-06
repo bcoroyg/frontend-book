@@ -37,6 +37,25 @@ class BookAPI {
       console.log(error);
     }
   }
+
+  async updateBook(book, token) {
+    try {
+      //Crear un formdata
+      const formData = new FormData();
+      formData.append("title", book.title);
+      formData.append("description", book.description);
+      book.file && formData.append("file", book.file);
+      const response = await clientAxios.put(`/books/${book._id}`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return response;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 
 export default new BookAPI();

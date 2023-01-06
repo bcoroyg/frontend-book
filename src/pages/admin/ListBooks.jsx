@@ -50,18 +50,21 @@ const ListBooks = () => {
           <tbody>
             {books.length > 0 ? (
               books.map((book, index) => (
-                <tr key={book.id}>
+                <tr key={book._id}>
                   <td>{index + 1}</td>
                   <td>{book.title}</td>
                   <td>{book.description.substring(0, 40)}...</td>
                   <td>
-                    <img src={book.image} alt="" srcset="" width={"50px"} />
+                    <img src={book.image} alt="" width={"50px"} />
                   </td>
                   <td>
                     <div className="d-flex justify-content-md-between">
-                      <button className="btn btn-warning rounded-0 col-md-5">
+                      <Link
+                        to={`/dashboard/edit/${book._id}`}
+                        className="btn btn-warning rounded-0 col-md-5"
+                      >
                         Editar
-                      </button>
+                      </Link>
                       <button className="btn btn-danger rounded-0 col-md-5">
                         Eliminar
                       </button>
@@ -70,7 +73,9 @@ const ListBooks = () => {
                 </tr>
               ))
             ) : (
-              <h1>No hay libros</h1>
+              <tr>
+                <td colSpan={5}>No hay libros</td>
+              </tr>
             )}
           </tbody>
         </table>
