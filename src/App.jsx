@@ -9,6 +9,7 @@ import Login from "./pages/auth/Login";
 import ListBooks from "./pages/admin/ListBooks";
 import { useContext } from "react";
 import { AuthContext, AuthProvider } from "./context/auth";
+import AddBook from "./pages/admin/AddBook";
 
 function App() {
   //Utilizar Context en el component
@@ -28,6 +29,7 @@ function App() {
           </Route>
           <Route path="/dashboard" element={<LayoutAdmin />}>
             <Route path="" element={<ListBooks />} />
+            <Route path="add" element={<AddBook />} />
           </Route>
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>

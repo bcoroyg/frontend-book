@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { bookAPI } from "../../api";
 import { AuthContext } from "../../context/auth";
 
@@ -27,6 +27,15 @@ const ListBooks = () => {
   return (
     <>
       <h2 className="text-center mt-2">Listado de Libros</h2>
+      <div className="d-grid">
+        <Link
+          to={"/dashboard/add"}
+          className="btn btn-primary btn-lg rounded-0 mb-1"
+          role="button"
+        >
+          Nuevo Libro
+        </Link>
+      </div>
       <div className="table-responsive">
         <table className="table table-striped table-bordered align-middle">
           <thead className="table-dark">

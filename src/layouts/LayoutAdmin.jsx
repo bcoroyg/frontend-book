@@ -6,7 +6,7 @@ const LayoutAdmin = () => {
     <>
       <Navbar />
       <div className="container">
-        <div className="row">
+        <div className="row justify-content-center">
           <Outlet />
         </div>
       </div>
