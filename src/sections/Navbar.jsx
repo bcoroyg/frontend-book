@@ -1,6 +1,26 @@
-import { Link, NavLink } from "react-router-dom";
+import { useState } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  //Aplicando navigate
+  const navigate = useNavigate();
+
+  const [query, setQuery] = useState({
+    q: "",
+  });
+  //lee los datos del formulario
+  const updateState = (e) => {
+    setQuery({
+      ...query,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const searchTechnology = (e) => {
+    e.preventDefault();
+    navigate(`/search/${query.q}`);
+    setQuery({ q: "" });
+  };
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
@@ -31,6 +51,20 @@ const Navbar = () => {
               </NavLink>
             </li>
           </ul>
+          <form onSubmit={searchTechnology} className="d-flex" role="search">
+            <input
+              className="form-control me-2"
+              name="q"
+              type="search"
+              placeholder="Buscar libro..."
+              aria-label="Search"
+              value={query.q}
+              onChange={updateState}
+            />
+            <button className="btn btn-outline-success" type="submit">
+              Buscar
+            </button>
+          </form>
         </div>
       </div>
     </nav>
