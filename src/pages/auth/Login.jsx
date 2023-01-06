@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { authAPI } from "../../api";
+import { AuthContext } from "../../context/auth";
 
 const Login = () => {
   //Navigate
@@ -8,6 +9,9 @@ const Login = () => {
 
   //State con los datos del formulario
   const [credentials, setCredentials] = useState({});
+
+  //Context Auth
+  const [auth, setAuth] = useContext(AuthContext);
 
   //Almacenar lo que el usuario escribe en el state
   const handleChange = ({ target }) => {
@@ -17,13 +21,22 @@ const Login = () => {
     }));
   };
 
+  //Iniciar sesion en el servidor
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      //autenticar usuario
       const response = await authAPI.login(credentials);
       //Extraer el token y colocarlo en localstorage
       const { token } = response;
       localStorage.setItem("token", token);
+
+      //Colocarlo en el Context
+      setAuth({
+        token,
+        auth: true,
+      });
+
       //Redireccionar
       navigate("/dashboard");
     } catch (error) {

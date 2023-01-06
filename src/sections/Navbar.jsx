@@ -67,7 +67,7 @@ const Navbar = () => {
           </form>
           <Link
             to={"/login"}
-            class="btn btn-outline-primary ms-auto mt-2 mt-md-0"
+            className="btn btn-outline-primary ms-auto mt-2 mt-md-0"
             role="button"
           >
             Iniciar Sesion
