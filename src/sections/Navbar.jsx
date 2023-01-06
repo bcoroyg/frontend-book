@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/auth";
 
 const Navbar = () => {
   //Aplicando navigate
   const navigate = useNavigate();
+
+  //Utilizar valores del context
+  const [auth, setAuth] = useContext(AuthContext);
 
   const [query, setQuery] = useState({
     q: "",
@@ -41,15 +45,17 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <NavLink className="nav-link" to={"/"}>
-                Inicio
-              </NavLink>
-            </li>
-            <li className="nav-item">
               <NavLink className="nav-link" to={"/books"}>
                 Libros
               </NavLink>
             </li>
+            {auth.token && (
+              <li className="nav-item">
+                <NavLink className="nav-link" to={"/dashboard"}>
+                  Dashboard
+                </NavLink>
+              </li>
+            )}
           </ul>
           <form onSubmit={searchTechnology} className="d-flex" role="search">
             <input
@@ -65,13 +71,23 @@ const Navbar = () => {
               Buscar
             </button>
           </form>
-          <Link
-            to={"/login"}
-            className="btn btn-outline-primary ms-auto mt-2 mt-md-0"
-            role="button"
-          >
-            Iniciar Sesion
-          </Link>
+          {auth.token ? (
+            <Link
+              to={"/"}
+              className="btn btn-outline-danger ms-auto mt-2 mt-md-0"
+              role="button"
+            >
+              Cerrar Sesión
+            </Link>
+          ) : (
+            <Link
+              to={"/login"}
+              className="btn btn-outline-primary ms-auto mt-2 mt-md-0"
+              role="button"
+            >
+              Iniciar Sesion
+            </Link>
+          )}
         </div>
       </div>
     </nav>

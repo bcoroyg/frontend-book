@@ -1,11 +1,14 @@
 import { Outlet } from "react-router-dom";
+import Navbar from "../sections/Navbar";
 
 const LayoutAdmin = () => {
   return (
-    <div className="container-fluid">
-      <nav>Navbar Admin</nav>
-      <Outlet/>
-    </div>
+    <>
+      <Navbar />
+      <div className="container-fluid">
+        <Outlet />
+      </div>
+    </>
   );
 };
 
