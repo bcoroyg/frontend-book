@@ -9,6 +9,15 @@ class BookAPI {
       console.log(error);
     }
   }
+
+  async getBook(id) {
+    try {
+      const response = await clientAxios.get(`/books/${id}`);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 
 export default new BookAPI();
