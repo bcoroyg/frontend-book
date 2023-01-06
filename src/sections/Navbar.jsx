@@ -57,20 +57,6 @@ const Navbar = () => {
               </li>
             )}
           </ul>
-          <form onSubmit={searchTechnology} className="d-flex" role="search">
-            <input
-              className="form-control me-2"
-              name="q"
-              type="search"
-              placeholder="Buscar libro..."
-              aria-label="Search"
-              value={query.q}
-              onChange={updateState}
-            />
-            <button className="btn btn-outline-success" type="submit">
-              Buscar
-            </button>
-          </form>
           {auth.token ? (
             <Link
               to={"/"}
@@ -80,13 +66,33 @@ const Navbar = () => {
               Cerrar Sesión
             </Link>
           ) : (
-            <Link
-              to={"/login"}
-              className="btn btn-outline-primary ms-auto mt-2 mt-md-0"
-              role="button"
-            >
-              Iniciar Sesion
-            </Link>
+            <>
+              <form
+                onSubmit={searchTechnology}
+                className="d-flex"
+                role="search"
+              >
+                <input
+                  className="form-control me-2"
+                  name="q"
+                  type="search"
+                  placeholder="Buscar libro..."
+                  aria-label="Search"
+                  value={query.q}
+                  onChange={updateState}
+                />
+                <button className="btn btn-outline-success" type="submit">
+                  Buscar
+                </button>
+              </form>
+              <Link
+                to={"/login"}
+                className="btn btn-outline-primary ms-auto mt-2 mt-md-0"
+                role="button"
+              >
+                Iniciar Sesion
+              </Link>
+            </>
           )}
         </div>
       </div>

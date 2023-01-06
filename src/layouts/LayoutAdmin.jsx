@@ -5,8 +5,10 @@ const LayoutAdmin = () => {
   return (
     <>
       <Navbar />
-      <div className="container-fluid">
-        <Outlet />
+      <div className="container">
+        <div className="row">
+          <Outlet />
+        </div>
       </div>
     </>
   );
