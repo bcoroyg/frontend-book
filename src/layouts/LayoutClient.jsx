@@ -1,11 +1,14 @@
 import { Outlet } from "react-router-dom";
+import Navbar from "../sections/Navbar";
 
 const LayoutClient = () => {
   return (
-    <div className="container-fluid">
-      <nav>Navbar Client</nav>
-      <Outlet/>
-    </div>
+    <>
+      <Navbar/>
+      <div className="container-fluid">
+        <Outlet/>
+      </div>
+    </>
   );
 };
 
