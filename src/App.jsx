@@ -1,11 +1,12 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import { LayoutAuth, LayoutClient } from "./layouts";
+import { LayoutAdmin, LayoutAuth, LayoutClient } from "./layouts";
 import BookDetail from "./pages/client/BookDetail";
 import Books from "./pages/client/Books";
 import Home from "./pages/client/Home";
 import Search from "./pages/client/Search";
 import Login from "./pages/auth/Login";
+import ListBooks from "./pages/admin/ListBooks";
 
 function App() {
   return (
@@ -19,6 +20,9 @@ function App() {
         </Route>
         <Route path="/" element={<LayoutAuth />}>
           <Route path="login" element={<Login />} />
+        </Route>
+        <Route path="/dashboard" element={<LayoutAdmin />}>
+          <Route path="" element={<ListBooks />} />
         </Route>
       </Routes>
     </BrowserRouter>
