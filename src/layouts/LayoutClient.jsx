@@ -1,4 +1,5 @@
 import { Outlet } from "react-router-dom";
+import Footer from "../sections/Footer";
 import Navbar from "../sections/Navbar";
 
 const LayoutClient = () => {
@@ -8,6 +9,7 @@ const LayoutClient = () => {
       <div className="container-fluid">
         <Outlet/>
       </div>
+      <Footer/>
     </>
   );
 };

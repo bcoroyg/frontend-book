@@ -1,4 +1,5 @@
 import { Outlet } from "react-router-dom";
+import Footer from "../sections/Footer";
 import Navbar from "../sections/Navbar";
 
 const LayoutAdmin = () => {
@@ -10,6 +11,7 @@ const LayoutAdmin = () => {
           <Outlet />
         </div>
       </div>
+      <Footer/>
     </>
   );
 };
