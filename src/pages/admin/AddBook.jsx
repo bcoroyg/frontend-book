@@ -39,7 +39,7 @@ const AddBook = () => {
   };
 
   return (
-    <div className="col-md-8 col-lg-6 card py-5 rounded-0">
+    <div className="col-md-8 col-lg-6 card py-5 rounded-0 mt-2">
       <h2 className="text-center">Nuevo libro</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-1">
