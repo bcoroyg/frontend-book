@@ -56,6 +56,19 @@ class BookAPI {
       console.log(error);
     }
   }
+
+  async deleteBook(id, token) {
+    try {
+      const response = await clientAxios.delete(`/books/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 
 export default new BookAPI();
