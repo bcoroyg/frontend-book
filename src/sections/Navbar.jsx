@@ -25,6 +25,16 @@ const Navbar = () => {
     navigate(`/search/${query.q}`);
     setQuery({ q: "" });
   };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setAuth({
+      token: "",
+      auth: false,
+    });
+    navigate("/");
+  };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
@@ -58,13 +68,13 @@ const Navbar = () => {
             )}
           </ul>
           {auth.token ? (
-            <Link
-              to={"/"}
+            <button
               className="btn btn-outline-danger ms-auto mt-2 mt-md-0"
-              role="button"
+              type="button"
+              onClick={handleLogout}
             >
               Cerrar Sesión
-            </Link>
+            </button>
           ) : (
             <>
               <form
@@ -79,6 +89,7 @@ const Navbar = () => {
                   placeholder="Buscar libro..."
                   aria-label="Search"
                   value={query.q}
+                  required
                   onChange={updateState}
                 />
                 <button className="btn btn-outline-success" type="submit">
